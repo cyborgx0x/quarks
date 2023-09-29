@@ -1,0 +1,28 @@
+version: "3"
+services:
+  backend:
+    build: https://github.com/BangBBBB/quarks_api.git
+    restart: always
+    command: gunicorn --bind 0.0.0.0:8000 quarks_api.wsgi:application --timeout 90
+    volumes:
+      - .:/code
+    expose:
+      - "8000"
+  frontend:
+    build: https://github.com/diopthe20/quarks-react.git
+    volumes:
+      - /app/build/
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "80:80"
+    volumes:
+      - /www/static/
+    volumes_from:
+      - backend
+    links:
+      - backend:backend
+    depends_on:
+      - backend
+      - frontend

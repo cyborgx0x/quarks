@@ -1,0 +1,6 @@
+[submodule "quarks-react"]
+	path = quarks-react
+	url = https://github.com/diopthe20/quarks-react.git
+[submodule "quarks_api"]
+	path = quarks_api
+	url = https://github.com/BangBBBB/quarks_api.git
